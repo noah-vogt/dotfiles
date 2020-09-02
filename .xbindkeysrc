@@ -1,0 +1,19 @@
+# increase volume
+"amixer set Master 10%+ && pkill -RTMIN+1 dwmblocks"
+   XF86AudioRaiseVolume
+
+# lower volume
+"amixer set Master 10%- && pkill -RTMIN+1 dwmblocks"
+   XF86AudioLowerVolume
+
+# toggle mute
+"amixer set Master toggle && pkill -RTMIN+1 dwmblocks"
+   XF86AudioMute
+
+# increase monitor brightness
+"inc-brightness && pkill -RTMIN+2 dwmblocks"
+   XF86MonBrightnessUp
+
+# decrease monitor brightness
+"dec-brightness && pkill -RTMIN+2 dwmblocks"
+   XF86MonBrightnessDown
