@@ -1,0 +1,11 @@
+#!/bin/sh
+
+BATTERYSTATE=$( acpi -b | awk '{ split($5,a,":"); print substr($3,0,2), $4, "["a[1]":"a[2]"]" }' | tr -d ',' )
+if [[ $BATTERYSTATE =~ "Ch" ]]
+then
+    icon="⚡"
+else
+    icon="🔋"
+fi
+batterypercent=$(echo $BATTERYSTATE | tr -d 'Ch' | tr -d 'Di' | tr -d 'Fu')
+printf "%s%s\\n" "$icon" "$batterypercent"

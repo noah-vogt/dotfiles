@@ -1,0 +1,23 @@
+#!/bin/sh
+while true
+    do
+
+    brightness0=`brightnessctl -d "amdgpu_bl0" get`
+    brightness1=`expr $brightness0 \* 100`
+    brightness2=`expr $brightness1 / 256`
+    DATETIME=`date +"%Y %b %d (%a) %H:%M"`
+    UPTIME=`uptime | sed 's/.*up\s*//' | sed 's/,\s*[0-9]* user.*//' | sed 's/  / /g'`
+    mute=$( amixer sget Master | grep -e 'Front Left:' )
+    if [[ $mute =~ "[off]" ]]
+    then
+        MUTEICON="🔇" 
+    else
+        MUTEICON="🔊"
+    fi
+    vol=$( echo $mute | cut -d'[' -f2 )
+    VOLUME=$( echo $vol | rev | cut -c 2- | rev)
+    BATTERYSTATE=$( acpi -b | awk '{ split($5,a,":"); print substr($3,0,2), $4, "["a[1]":"a[2]"]" }' | tr -d ',' )
+    xsetroot -name "${MUTEICON}${VOLUME} | 🔋${BATTERYSTATE} | Up ${UPTIME} | 🔆${brightness2}% | ⌚${DATETIME}"
+
+    sleep 1s
+done &
