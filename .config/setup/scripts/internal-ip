@@ -1,0 +1,2 @@
+#!/bin/sh
+ip a | grep "inet 192" | tr '/' ' ' | awk '{print $2}'

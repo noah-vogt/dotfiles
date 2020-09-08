@@ -1,0 +1,12 @@
+#!/bin/sh
+
+wifi=`iwgetid -r`
+upstate=`ip a | grep BROADCAST | awk '{print $9}'`
+if [[ "x$wifi" = "x" ]];
+    then
+        icon="🔌"
+        wifi=$upstate
+    else
+        icon="📶"
+    fi
+printf "%s %s\\n" "$icon" "$wifi"
