@@ -61,6 +61,9 @@ let g:vrfr_rg = 'true'
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
+" set latex-live-preview previewer
+let g:livepreview_previewer = 'okular'
+
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 

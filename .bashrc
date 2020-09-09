@@ -6,6 +6,12 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ccat='highlight --out-format=ansi' # like cat, but with syntax highlighting
 
+# devour windows
+alias s='devour'
+#alias vlc='devour vlc'
+#alias sxiv='devour sxiv'
+#alias mupdf='devour sxiv'
+
 # basic system aliases
 alias p='sudo pacman'
 alias sc='sudo systemctl'
@@ -25,7 +31,7 @@ alias copy="xclip -sel clip"
 alias paste="xclip -out -sel clip"
 
 # quick acces to my latex templates 
-alias sl='sh ~/.config/setup/templates/latex/school.sh'
+alias sl='sh ~/.config/setup/templates/latex/school'
 
 # setting variables
 export EDITOR=vim

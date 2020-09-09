@@ -17,3 +17,8 @@
 # decrease monitor brightness
 "dec-brightness && pkill -RTMIN+2 dwmblocks"
    XF86MonBrightnessDown
+
+
+# open firefox
+"firefox"
+   Mod4 + V
