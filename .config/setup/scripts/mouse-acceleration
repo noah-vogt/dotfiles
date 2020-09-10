@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Script to Disable Mouse Acceleration (for dwm)
+# Note that you hav to find the right Device ID for "--set-prop" using "xinput list"
+xinput --set-prop 9 'libinput Accel Speed' 0
+xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
+
+xset mouse 3 0 &
