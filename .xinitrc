@@ -28,10 +28,8 @@ xset b off
 wmname LG3D
 
 # load composite manager
-xcompmgr -c &
-
-# load dwm bar script
-#sh ~/.config/setup/scripts/dwmbar&
+#xcompmgr -c &
+compton &
 
 # load dwmblocks
 dwmblocks &
