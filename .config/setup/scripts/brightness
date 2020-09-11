@@ -1,8 +1,8 @@
 #!/bin/sh
 
 brightness0=$(brightnessctl -d "amdgpu_bl0" get)
-brightness1=$(=$(("$brightness0" * 100)))
-brightness2=$(=$(("$brightness1" / 256)))
+brightness1=$(expr "$brightness0" \* 100)
+brightness2=$(expr "$brightness1" / 256)
 
 icon="🔆"
 printf "%s %s%s\\n" "$icon" "$brightness2" "%"
