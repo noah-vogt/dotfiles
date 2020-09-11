@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # fast copy program (faster than "cp", but copies ALL data incl. permissions)
-(cd $HOME/$1; tar -cf - .) | (cd $HOME/$2; tar -xf -)
+(cd "$HOME/$1" || exit; tar -cf - .) | (cd "$HOME/$2" || exit; tar -xf -)
