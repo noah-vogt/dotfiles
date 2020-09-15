@@ -1,12 +1,12 @@
 #!/bin/bash 
 
 mute=$( amixer sget Master | grep -e 'Front Left:' )
-if [[ $mute =~ [off] ]]
+if [[ $mute =~ "[off]" ]]
 then
     MUTEICON="🔇" 
 else
     MUTEICON="🔊"
 fi
 vol=$( echo "$mute" | cut -d'[' -f2 )
-VOLUME=$( echo "$vol" | rev | cut -c 2- | rev)
+VOLUME=$( echo "$vol" | rev | cut -c 2- | rev | tr -d ']')
 printf "%s %s\\n" "$MUTEICON" "$VOLUME"
