@@ -4,7 +4,7 @@ wifi=$(iwgetid -r)
 upstate=$(ip a | grep BROADCAST,MULTICAST, | awk '{print $9}')
 if [[ "x$wifi" = "x" ]];
     then
-        printf "%s\\n" "🔌$upstate"
+        printf "%s\\n" "🔌 $upstate"
     else
-        printf "%s\\n" "📶$upstate"
+        printf "%s\\n" "📶 $wifi"
     fi
