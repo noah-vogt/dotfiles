@@ -79,3 +79,6 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 
 " set encoding
 set encoding=utf-8
+
+" automatic python syntax highlighting for .tibasic files
+autocmd BufNewFile,BufRead *.tibasic set filetype=python
