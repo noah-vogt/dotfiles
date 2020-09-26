@@ -5,6 +5,9 @@
 export EDITOR=vim
 export PATH=$PATH:~/.config/setup/scripts/
 
+# ti basic compiler wine PLAYGROUND
+alias tibasicc='wine ~/.winetesting/tibasic-1.4.4/tibasic.exe' 
+
 # adding some colors to the world
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -18,10 +21,13 @@ alias free='free -h'
 # devour (swallow) windows
 alias mu='devour mupdf'
 alias xu='devour xournalpp'
+alias v='devour vlc'
+alias ok='devour okular'
 
 # basic system aliases
 alias p='sudo pacman'
 alias sc='sudo systemctl'
+alias sus='sudo systemctl suspend'
 alias sdn='shutdown now'
 alias xo='xdg-open'
 alias q='exit'
@@ -30,7 +36,6 @@ alias ll='ls -l'
 alias la='ls -a'
 
 # frequently used programs aliases
-alias v='vim'
 alias r='ranger'
 alias ca='calcurse'
 alias py='python'
@@ -38,6 +43,18 @@ alias py='python'
 # copy and paste using xclip package
 alias copy="xclip -sel clip"
 alias paste="xclip -out -sel clip"
+
+# faster directory switching
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# git aliases
+alias status='git status'
+alias add='git add'
+alias commit='git commit'
+alias fetch='git fetch'
+alias pull='git pull'
+alias push='git push'
 
 # quick acces to my latex templates 
 alias sl='sh ~/.config/setup/templates/latex/school'
