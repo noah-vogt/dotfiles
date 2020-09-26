@@ -20,6 +20,7 @@ alias mu='devour mupdf'
 alias xu='devour xournalpp'
 alias v='devour vlc'
 alias ok='devour okular'
+alias si='devour sxiv'
 
 # basic system aliases
 alias p='sudo pacman'
