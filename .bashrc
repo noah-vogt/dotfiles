@@ -5,9 +5,6 @@
 export EDITOR=vim
 export PATH=$PATH:~/.config/setup/scripts/
 
-# ti basic compiler wine PLAYGROUND
-alias tibasicc='wine ~/.winetesting/tibasic-1.4.4/tibasic.exe' 
-
 # adding some colors to the world
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
