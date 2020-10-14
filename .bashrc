@@ -33,6 +33,9 @@ alias sx='startx'
 alias ll='ls -l'
 alias la='ls -a'
 
+# reload configs
+alias sb='source ~/.bashrc'
+
 # frequently used programs aliases
 alias r='ranger'
 alias ca='calcurse'
@@ -46,6 +49,11 @@ alias paste="xclip -out -sel clip"
 alias ..='cd ..'
 alias ...='cd ../..'
 
+# safety features
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
 # git aliases
 alias status='git status'
 alias add='git add'
@@ -53,9 +61,14 @@ alias commit='git commit'
 alias fetch='git fetch'
 alias pull='git pull'
 alias push='git push'
+alias log='git log'
+alias remote='git remote'
+alias tag='git tag'
+alias checkout='git checkout'
+alias merge='git merge'
 
 # quick acces to my latex templates 
 alias sl='sh ~/.config/setup/templates/latex/school'
 
 # using bash colors for PS1
-PROMPT_COMMAND='PS1="\[\033[01;97m\][\[\033[01;96m\]\u\[\033[01;97m\]@\[\033[01;91m\]\h \[\033[00m\]\[\033[01;32m\]\W\[\033[00m\]\[\033[01;97m\]]\[\033[01;90m\]\$\[\033[00m\] "'
+PROMPT_COMMAND='PS1="\[\033[01;97m\][\[\033[01;96m\]\u\[\033[01;97m\]@\[\033[01;91m\]\h \[\033[00m\]\[\033[01;32m\]\W\[\033[00m\]\[\033[01;97m\]]\[\033[01;95m\]\$\[\033[00m\] "'
