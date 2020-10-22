@@ -11,14 +11,18 @@
    XF86AudioMute
 
 # increase monitor brightness
-"inc-brightness && pkill -RTMIN+2 dwmblocks"
+"inc-brightness && pkill -RTMIN+2 dwmblocks && brightness-save"
    XF86MonBrightnessUp
 
 # decrease monitor brightness
-"dec-brightness && pkill -RTMIN+2 dwmblocks"
+"dec-brightness && pkill -RTMIN+2 dwmblocks && brightness-save"
    XF86MonBrightnessDown
 
 
 # open firefox
 "firefox"
    Mod4 + V
+
+# make a screenshot
+"screenshot"
+   Print

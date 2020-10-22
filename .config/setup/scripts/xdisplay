@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mkdir -p /tmp/nSession
+echo "xrandr --auto --output eDP --mode 1920x1080 --right-of HDMI-A-0" > /tmp/nSession/monitors

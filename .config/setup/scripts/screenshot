@@ -1,0 +1,3 @@
+#!/bin/sh
+
+import -windows root "Pictures/screenshots/$(date +"%F--%H-%M-%S--%N").jpg"

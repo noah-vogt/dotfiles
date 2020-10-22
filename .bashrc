@@ -45,6 +45,9 @@ alias py='python'
 alias copy="xclip -sel clip"
 alias paste="xclip -out -sel clip"
 
+# lockscreen
+alias lock='betterlockscreen -s dim'
+
 # faster directory switching
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -55,7 +58,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # git aliases
-alias status='git status'
+alias gs='git status'
 alias add='git add'
 alias commit='git commit'
 alias fetch='git fetch'

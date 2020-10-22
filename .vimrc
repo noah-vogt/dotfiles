@@ -82,3 +82,6 @@ set encoding=utf-8
 
 " automatic python syntax highlighting for .tibasic files
 autocmd BufNewFile,BufRead *.tibasic set filetype=python
+
+" make background transparent
+hi Normal ctermbg=none
