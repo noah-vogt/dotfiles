@@ -85,3 +85,4 @@ autocmd BufNewFile,BufRead *.tibasic set filetype=python
 
 " make background transparent
 hi Normal ctermbg=none
+hi NonText ctermbg=none
