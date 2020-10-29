@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# list network interfaces
+iwconfig
+
+# get user input
+printf "Select Wifi Interface: "
+read interface
+
+printf "Username: "
+read username
+
+stty -echo
+printf "Password: "
+read password
+stty echo
+printf "\n"
+
+# define unique uuid
+uuid=$(uuidgen)
+while $(grep -q "uuid=${uuid}" /etc/NetworkManager/system-connections/*)
+do
+    uuid=$(uuidgen)
+done
+
+printf "[connection]
+id=GKGe
+uuid=%s
+type=wifi
+interface-name=%s
+permissions=
+
+[wifi]
+mac-address-blacklist=
+mode=infrastructure
+ssid=GKGe
+
+[wifi-security]
+auth-alg=open
+key-mgmt=wpa-eap
+
+[802-1x]
+eap=peap;
+identity=%s
+password=%s
+phase2-auth=mschapv2
+
+[ipv4]
+dns-search=
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method=auto
+
+[proxy]
+" "$uuid" "$interface" "$username" "$password" > /etc/NetworkManager/system-connections/GKGe.nmconnection
