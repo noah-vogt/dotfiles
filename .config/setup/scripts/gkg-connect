@@ -1,28 +1,32 @@
-#!/bin/sh
+#!/bin/bash
+
+# make sure that script is run with root privileges
+[ $EUID -ne 0 ] && { echo -e "\e[0;30;101m Error: Please run this script with root privileges \e[0m"; exit; }
 
 # list network interfaces
+echo -e "\e[0;30;42m List of Wifi interfaces (iwconfig): \e[0m\n"
 iwconfig
 
 # get user input
-printf "Select Wifi Interface: "
-read interface
+echo -e "\e[0;30;46m Select Wifi Interface: \e[0m" 
+read -rp " >>> " interface
 
-printf "Username: "
-read username
+echo -e "\n\e[0;30;46m Username: \e[0m" 
+read -rp " >>> " username
 
-stty -echo
-printf "Password: "
-read password
-stty echo
+echo -e "\n\e[0;30;46m Password: \e[0m" 
+echo -n " >>> "
+read -rs password
 printf "\n"
 
 # define unique uuid
 uuid=$(uuidgen)
-while $(grep -q "uuid=${uuid}" /etc/NetworkManager/system-connections/*)
+while grep -q "uuid=${uuid}" /etc/NetworkManager/system-connections/*
 do
     uuid=$(uuidgen)
 done
 
+# generate connection file
 printf "[connection]
 id=GKGe
 uuid=%s
@@ -55,4 +59,4 @@ dns-search=
 method=auto
 
 [proxy]
-" "$uuid" "$interface" "$username" "$password" > /etc/NetworkManager/system-connections/GKGe.nmconnection
+" "$uuid" "$interface" "$username" "$password" > /etc/NetworkManager/system-connections/GKGelol.nmconnection

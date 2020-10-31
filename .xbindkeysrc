@@ -23,6 +23,11 @@
 "firefox"
    Mod4 + V
 
-# make a screenshot
+# select area of screenshoot
+"screenshoot-area"
+   Mod4 + F10
+
+# make a screenshot of the full screen
 "screenshot"
    Print
+

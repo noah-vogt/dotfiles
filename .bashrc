@@ -12,7 +12,7 @@ alias ccat='highlight --out-format=ansi' # like cat, but with syntax highlightin
 
 # human readable pls
 alias du='du -h'
-alias df='du -h'
+alias df='df -h'
 alias free='free -h'
 
 # devour (swallow) windows
@@ -21,6 +21,7 @@ alias xu='devour xournalpp'
 alias v='devour vlc'
 alias ok='devour okular'
 alias si='devour sxiv'
+alias lo='devour libreoffice'
 
 # basic system aliases
 alias p='sudo pacman'
