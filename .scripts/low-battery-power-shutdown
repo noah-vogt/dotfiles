@@ -1,0 +1,6 @@
+#!/bin/sh
+percent=$(acpi -b | awk '{print($4)}'| tr -d '%,')
+[ "$percent" -lt 10 ]; && echo "hi"
+#if [ "$percent" -lt 10 ]; then
+    #echo "$percent"
+#fi
