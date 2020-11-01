@@ -1,8 +1,6 @@
 #!/bin/sh
 
-brightness0=$(brightnessctl -d "amdgpu_bl0" get)
-brightness1=$(expr "$brightness0" \* 100)
-brightness2=$(expr "$brightness1" / 256)
+device=$(brightnessctl -l | grep "class 'backlight'" | head -n 1 | awk '{print $2}' | tr -d "'")
+brightness=$(brightnessctl -d "${device}" | grep Current | awk -F '[)(]' '{print $2}')
 
-icon="🔆"
-printf "%s %s%s\\n" "$icon" "$brightness2" "%"
+printf "🔆 %s\\n" "$brightness"
