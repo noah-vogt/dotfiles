@@ -1,23 +1,36 @@
 # increase volume
 "amixer set Master 10%+ && pkill -RTMIN+1 dwmblocks"
    XF86AudioRaiseVolume
+"amixer set Master 10%+ && pkill -RTMIN+1 dwmblocks"
+   Mod4 + F3
 
 # lower volume
 "amixer set Master 10%- && pkill -RTMIN+1 dwmblocks"
    XF86AudioLowerVolume
+"amixer set Master 10%- && pkill -RTMIN+1 dwmblocks"
+   Mod4 + F2
 
 # toggle mute
 "amixer set Master toggle && pkill -RTMIN+1 dwmblocks"
    XF86AudioMute
+"amixer set Master toggle && pkill -RTMIN+1 dwmblocks"
+   Mod4 + F1
 
 # increase monitor brightness
 "inc-brightness && pkill -RTMIN+2 dwmblocks && brightness-save"
-   XF86MonBrightnessUp
+   Mod4 + F12
 
 # decrease monitor brightness
 "dec-brightness && pkill -RTMIN+2 dwmblocks && brightness-save"
-   XF86MonBrightnessDown
+   Mod4 + F11
 
+# dmenu emoji selector
+"dmenuunicode"
+   Mod4 + E
+
+# force "reloading" dwm windows
+"st -e exit"
+   Mod4 + S
 
 # open firefox
 "firefox"

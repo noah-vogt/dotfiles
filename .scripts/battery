@@ -1,11 +1,13 @@
 #!/bin/bash
 
-BATTERYSTATE=$( acpi -b | awk '{ split($5,a,":"); print substr($3,0,2), $4, "["a[1]":"a[2]"]" }' | tr -d ',' )
+acpi -b | grep -q "Battery 0" || { printf ""; exit; }
+
+BATTERYSTATE=$( acpi -b | awk '{ split($5,a,":"); print substr($3,0,2), $4, "["a[1]":"a[2]"]" }' | tr -d ',DiFu' )
 if [[ $BATTERYSTATE =~ "Ch" ]]
 then
     icon="⚡"
 else
     icon="🔋"
 fi
-batterypercent=$(echo "$BATTERYSTATE" | tr -d 'Ch' | tr -d 'Di' | tr -d 'Fu')
+batterypercent=$(echo "$BATTERYSTATE" | tr -d 'Ch' | sed 's/cargng:/?/')
 printf "%s%s\\n" "$icon" "$batterypercent"
