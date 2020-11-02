@@ -10,7 +10,7 @@ export BROWSER=firefox &
 export EDITOR=vim &
 
 # set wallpaper
-betterlockscreen -w dim
+feh --bg-scale ~/.cache/i3lock/current/resized.png
 
 # turn off BIOS beeper
 xset b off
@@ -26,7 +26,7 @@ picom &
 setxkbmap -option caps:swapescape
 
 # set brightness
-brightnessctl -d "amdgpu_bl0" set $(cat ~/.config/norisa/brightness-state)%
+brightnessctl -d $(brightnessctl -l | grep "class 'backlight'" | head -n 1 | awk '{print $2}' | tr -d "'") set $(cat ~/.config/norisa/brightness-state)%
 
 # load dwmblocks
 dwmblocks &
