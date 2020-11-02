@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo 'lock\nbetterlockscreen -l\nsdn\nreboot' | dmenu -p '$' | tee /tmp/prompt-cmd | xargs -0 bash -ic

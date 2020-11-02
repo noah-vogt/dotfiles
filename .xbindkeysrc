@@ -28,6 +28,18 @@
 "dmenuunicode"
    Mod4 + E
 
+# dmenu mount prompt
+"dmenumount"
+   Mod4 + F8
+
+# dmenu umount prompt
+"dmenuumount"
+   Mod4 + F9
+
+# command prompt (only non-root commands)
+"dmenuprompt"
+   Mod4 + R
+
 # force "reloading" dwm windows
 "st -e exit"
    Mod4 + S

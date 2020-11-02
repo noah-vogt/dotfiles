@@ -18,6 +18,9 @@ xset b off
 # set WM name (for Java apps)
 wmname LG3D
 
+# load notification deamon
+dunst &
+
 # load composite manager
 #xcompmgr -c &
 picom &
