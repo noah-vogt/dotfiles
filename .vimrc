@@ -77,6 +77,11 @@ nnoremap <leader>ps :Rg<CR>
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 
+"" commands for opening and compiling groff documents
+command Mug silent !vgroff % &
+command C !compile %
+autocmd BufWritePost *.ms silent !compile % &
+
 " set encoding
 set encoding=utf-8
 
