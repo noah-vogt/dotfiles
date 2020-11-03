@@ -2,4 +2,4 @@
 
 mkdir -p /tmp/nSession
 xrandr --auto --output eDP --mode 1920x1080
-echo "$(xrandr --auto --output eDP --mode 1920x1080)" > /tmp/nSession/monitors
+xrandr --auto --output eDP --mode 1920x1080 > /tmp/nSession/monitors

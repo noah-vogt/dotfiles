@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# script to compile a groff Document and reload mupdf afterwards
+
+[ -z "$1" ] && { echo "Error: Usage: compile [filename]"; exit 1; }
+groff -"${1##*.}" "$1" -dpaper=a4 -P -pa4 -T pdf > "${1%.*}.pdf" && pkill -HUP mupdf

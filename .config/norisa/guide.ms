@@ -1,4 +1,4 @@
-.nr PS 12250
+.nr PS 13000
 .TL
 Guide of NoRiSA (Noah's Ricing Script for Arch Linux)
 .AU
@@ -9,7 +9,21 @@ Introduction
 .PP
 Welcome to this Guide! This is my personal configuration of a
 .I "simple, extensible, decentralized, lightweight and vimkey-centric System."
-The aim is to find the balance between using as little resources while also being functional and goodlooking. I am constantly changing my configuration to come closer to this vision.
+The aim is to find the balance between using as little resources while also being functional and somewhat goodlooking. I am constantly changing this configuration to come closer to my vision.
+
+.SH
+How To Revisit This Document
+.PP
+If you are running NoRiSA, then you can get back to this Guide everytime when you press 
+.CW "Mod4+F4."
+Note that 
+.CW "Mod4"
+refers to the key you may know as 
+.CW "Windows Key, Super Key "
+or
+.CW " Command. "
+This Guide - including the source file - are located in 
+.I "$HOME/.config/norisa/."
 
 .SH
 General Keyboard Changes
@@ -20,7 +34,7 @@ and
 .I "Escape Key"
 : I swapped them. As a heavy vim user, this makes much more sense, saves me a lot of time and brings some convinience with it. If you actually tried this, I can guarantee you will 
 .I "never "
-want to go backt to your traditional keyboard setup.
+want to go back to your traditional keyboard setup.
 
 .SH
 Macros

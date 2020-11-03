@@ -8,5 +8,5 @@
 # sometimes two. Be careful about that.
 
 [ -z $* ] && echo "Error: No Arguments provided" && exit 1
-od -A x -t x1z -v $1
-od -A x -t x1z -v $1 | awk '{if(NR==5) print $12 " " $13}'
+od -A x -t x1z -v "$1"
+od -A x -t x1z -v "$1" | awk '{if(NR==5) print $12 " " $13}'
