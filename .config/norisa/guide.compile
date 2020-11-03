@@ -1,0 +1,1 @@
+groff -ms .config/norisa/guide.ms -dpaper=a4 -P -pa4 -T pdf
