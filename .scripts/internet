@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# script to display the network state in dwmblocks
+
 wifi=$(iwgetid -r)
 upstate=$(ip a | grep BROADCAST,MULTICAST, | awk '{print $9}')
 if [[ "x$wifi" = "x" ]];

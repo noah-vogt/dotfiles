@@ -1,6 +1,11 @@
 #!/bin/sh
 
-# script to compile a groff Document and reload mupdf afterwards
+# script to compile some document types
 
 [ -z "$1" ] && { echo "Error: Usage: compile [filename]"; exit 1; }
-groff -"${1##*.}" "$1" -dpaper=a4 -P -pa4 -T pdf > "${1%.*}.pdf" && pkill -HUP mupdf
+
+case "${1#*.}" in
+    ms) groff -"${1##*.}" "$1" -dpaper=a4 -P -pa4 -T pdf > "${1%.*}.pdf" && pkill -HUP mupdf;;
+    tex) pdflatex "$1"; pkill -HUP mupdf;;
+    *) echo "Error: unknown file extension '${1#*.}'"; exit 1;;
+esac

@@ -1,5 +1,7 @@
 #!/bin/bash 
 
+# script to display the current volume and mute state in dwmblocks
+
 mute=$( amixer sget Master | grep -e 'Front Left:' )
 if [[ $mute =~ "[off]" ]]
 then

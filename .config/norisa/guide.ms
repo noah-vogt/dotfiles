@@ -39,7 +39,7 @@ want to go back to your traditional keyboard setup.
 .SH
 Macros
 .PP
-The Efficiency of this System lives from all the handy keyboard shortcuts defined here. I sorted them in categories by use.
+The efficiency of this system lives from all the handy keyboard shortcuts listed in the following. I sorted them in categories by use:
 
 .RS
 .SH 2
