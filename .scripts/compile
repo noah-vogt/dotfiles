@@ -4,8 +4,8 @@
 
 [ -z "$1" ] && { echo "Error: Usage: compile [filename]"; exit 1; }
 
-case "${1#*.}" in
+case "${1##*.}" in
     ms) preconv "$1" |  groff -"${1##*.}" -dpaper=a4 -P -pa4 -T pdf > "${1%.*}.pdf" && pkill -HUP mupdf;;
     tex) pdflatex -output-directory "${1%/*}" "$1"; pkill -HUP mupdf;;
-    *) echo "Error: unknown file extension '${1#*.}'"; exit 1;;
+    *) echo "Error: unknown file extension '${1##*.}'"; exit 1;#;
 esac
