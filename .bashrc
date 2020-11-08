@@ -4,7 +4,7 @@
 # setting variables
 export EDITOR=vim
 export BROWSER=firefox
-export PATH=$PATH:~/.scripts/
+export PATH=$PATH:~/.scripts/:~/.local/bin
 
 # adding some colors to the world
 alias ls='ls --color=auto'
