@@ -19,9 +19,9 @@ set wildmenu
 set nu
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-set expandtab
-set smartindent
-set smartcase
+"set expandtab
+"set smartindent
+"set smartcase
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
@@ -33,9 +33,6 @@ call plug#begin('~/.vim/plugged')
 
 " A Vim Plugin to get a cool color theme
 Plug 'morhetz/gruvbox'
-
-" A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 "Plug 'jremmen/vim-ripgrep'
 "Plug 'tpope/vim-fugitive'
@@ -61,9 +58,6 @@ let g:vrfr_rg = 'true'
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
-" set latex-live-preview previewer
-let g:livepreview_previewer = 'okular'
-
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
@@ -88,6 +82,16 @@ set encoding=utf-8
 
 " automatic python syntax highlighting for .tibasic files
 autocmd BufNewFile,BufRead *.tibasic set filetype=python
+
+"" jumper
+vnoremap <Space><Space> <Esc>/<++><Enter>"_c4l 
+map <Space><Space> <Esc>/<++><Enter>"_c4l 
+
+" latex macros
+autocmd FileType tex inoremap ;bf \textbf{}<++><Esc>T{i
+autocmd FileType tex inoremap ;it \textit{}<++><Esc>T{i
+autocmd FileType tex inoremap ;beg <Esc>yypkI\begin{<Esc>A}<Esc>o<Esc>0i<Esc>jI\end{<Esc>A}<CR><Esc>0i<CR><Esc>0i<++><Esc>3ki
+autocmd FileType tex inoremap ;; <Esc>:%s/<DELME>/
 
 " make background transparent
 hi Normal ctermbg=none

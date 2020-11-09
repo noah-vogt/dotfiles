@@ -9,5 +9,5 @@ if [[ "x$wifi" = "x" ]];
         printf "%s\\n" "🔌 $upstate"
     else
         # printf "%s\\n" "📶 $wifi"
-        echo "$(awk '/^\s*w/ { print "📶", int($3 * 100 / 70) "%" }' /proc/net/wireless)"
+        awk '/^\s*w/ { print "📶", int($3 * 100 / 70) "%" }' /proc/net/wireless | sed 's/100/99/'
     fi
