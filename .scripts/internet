@@ -1,13 +1,30 @@
-#!/bin/bash
+#!/bin/sh
 
 # script to display the network state in dwmblocks
 
 wifi=$(iwgetid -r)
 upstate=$(ip a | grep BROADCAST,MULTICAST, | awk '{print $9}')
-if [[ "x$wifi" = "x" ]];
+if [ -z "$wifi" ];
     then
         printf "%s\\n" "🔌 $upstate"
     else
-        # printf "%s\\n" "📶 $wifi"
-        awk '/^\s*w/ { print "📶", int($3 * 100 / 70) "%" }' /proc/net/wireless | sed 's/100/99/'
+        # alternatively: diplay percentage
+        # awk '/^\s*w/ { print "📶", int($3 * 100 / 70) "%" }' /proc/net/wireless | sed 's/100/99/'
+
+		percent=$(awk '/^\s*w/ { print int($3 * 100 / 70) }' /proc/net/wireless)
+		if [ "$percent" -gt 80 ];
+		then
+			echo "🟢🟢🟢🟢🟢"
+		elif [ "$percent" -gt 60 ];
+		then
+			echo "🟢🟢🟢🟢🟠"
+		elif [ "$percent" -gt 40 ];
+		then
+			echo "🟢🟢🟢🟠🟠"
+		elif [ "$percent" -gt 20 ];
+		then
+			echo "🟢🟢🟠🟠🟠"
+		else
+			echo "🟢🟠🟠🟠🟠"
+		fi
     fi
