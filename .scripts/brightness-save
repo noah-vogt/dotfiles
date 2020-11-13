@@ -1,7 +1,8 @@
 #!/bin/sh
 
-brightness0=$(brightnessctl -d "amdgpu_bl0" get)
-brightness1=$(expr "$brightness0" \* 100)
-brightness2=$(expr "$brightness1" / 256)
+# script to save the brightness state so it is the same after a restart
 
-printf "%s" "$brightness2" > ~/.config/norisa/brightness-state
+device=$(brightnessctl -l | grep "class 'backlight'" | head -n 1 | awk '{print $2}' | tr -d "'")
+[ -z "$device" ] && { printf ""; exit; }
+
+printf "%s\\n" "$(brightnessctl -d "${device}" | grep Current | awk -F '[)(]' '{print $2}' | tr -d "%")" > ~/.config/norisa/brightness-state

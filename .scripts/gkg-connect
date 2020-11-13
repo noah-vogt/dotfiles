@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# script to connect to weird wifis
+
 # make sure that script is run with root privileges
 [ $EUID -ne 0 ] && { echo -e "\e[0;30;101m Error: Please run this script with root privileges \e[0m"; exit; }
 

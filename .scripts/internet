@@ -14,17 +14,17 @@ if [ -z "$wifi" ];
 		percent=$(awk '/^\s*w/ { print int($3 * 100 / 70) }' /proc/net/wireless)
 		if [ "$percent" -gt 80 ];
 		then
-			echo "🟢🟢🟢🟢🟢"
+			echo "🟩🟩🟩🟩🟩"
 		elif [ "$percent" -gt 60 ];
 		then
-			echo "🟢🟢🟢🟢🟠"
+			echo "🟩🟩🟩🟩🟧"
 		elif [ "$percent" -gt 40 ];
 		then
-			echo "🟢🟢🟢🟠🟠"
+			echo "🟩🟩🟩🟧🟧"
 		elif [ "$percent" -gt 20 ];
 		then
-			echo "🟢🟢🟠🟠🟠"
+			echo "🟩🟩🟧🟧🟧"
 		else
-			echo "🟢🟠🟠🟠🟠"
+			echo "🟩🟧🟧🟧🟧"
 		fi
     fi
