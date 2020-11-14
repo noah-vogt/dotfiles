@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# todo: add exception if ".tex" is already in the commandline argument
-mkdir $1 && cd $1
-cp ~/.config/setup/templates/latex/school-template.tex .
-mv school-template.tex $1.tex
-vim -c :59  $1.tex

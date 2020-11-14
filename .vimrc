@@ -83,16 +83,32 @@ set encoding=utf-8
 " automatic python syntax highlighting for .tibasic files
 autocmd BufNewFile,BufRead *.tibasic set filetype=python
 
-"" jumper
-vnoremap <Space><Space> <Esc>/<++><Enter>"_c4l 
-map <Space><Space> <Esc>/<++><Enter>"_c4l 
+" jumper
+vnoremap <Space><Space> <Esc>/<++><Enter>"_c4l
+map <Space><Space> <Esc>/<++><Enter>"_c4l
 
-" latex macros
-autocmd FileType tex inoremap ;bf \textbf{}<++><Esc>T{i
-autocmd FileType tex inoremap ;it \textit{}<++><Esc>T{i
+""" latex macros
+" standard macros
 autocmd FileType tex inoremap ;beg <Esc>yypkI\begin{<Esc>A}<Esc>o<Esc>0i<Esc>jI\end{<Esc>A}<CR><Esc>0i<CR><Esc>0i<++><Esc>3ki
 autocmd FileType tex inoremap ;; <Esc>:%s/<DELME>/
+autocmd FileType tex inoremap ;up \usepackage{}<Esc>i
+
+" text formatting macros
+autocmd FileType tex inoremap ;bf \textbf{}<++><Esc>T{i
+autocmd FileType tex inoremap ;it \textit{}<++><Esc>T{i
+
+" beamer macros
+autocmd FileType tex inoremap ;fr \begin{frame}<CR>\frametitle{}<CR><++><CR>\end{frame}<Esc>kklli
 
 " make background transparent
 hi Normal ctermbg=none
 hi NonText ctermbg=none
+
+" disalbe automatic identation
+filetype indent off
+
+" disable automatic comment
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" clear a TeX build after exiting vim
+autocmd VimLeavePre *.tex !texclear "%"
