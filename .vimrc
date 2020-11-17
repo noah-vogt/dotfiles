@@ -87,11 +87,17 @@ autocmd BufNewFile,BufRead *.tibasic set filetype=python
 vnoremap <Space><Space> <Esc>/<++><Enter>"_c4l
 map <Space><Space> <Esc>/<++><Enter>"_c4l
 
-""" latex macros
+""" START latex macros
 " standard macros
 autocmd FileType tex inoremap ;beg <Esc>yypkI\begin{<Esc>A}<Esc>o<Esc>0i<Esc>jI\end{<Esc>A}<CR><Esc>0i<CR><Esc>0i<++><Esc>3ki
-autocmd FileType tex inoremap ;; <Esc>:%s/<DELME>/
 autocmd FileType tex inoremap ;up \usepackage{}<Esc>i
+autocmd FileType tex inoremap ;ig \includegraphics[]{<++>}<Esc>6hi
+autocmd FileType tex inoremap ;tw width=\textwidth<Esc>9hi
+autocmd FileType tex inoremap ;th height=\textheight<Esc>10hi
+autocmd FileType tex inoremap ;ni \setlength{\parindent}{0em}<Esc>
+
+" packages
+autocmd FileType tex inoremap ;ger \usepackage[ngerman]{babel}<Esc>
 
 " text formatting macros
 autocmd FileType tex inoremap ;bf \textbf{}<++><Esc>T{i
@@ -99,6 +105,7 @@ autocmd FileType tex inoremap ;it \textit{}<++><Esc>T{i
 
 " beamer macros
 autocmd FileType tex inoremap ;fr \begin{frame}<CR>\frametitle{}<CR><++><CR>\end{frame}<Esc>kklli
+""" END latex macros
 
 " make background transparent
 hi Normal ctermbg=none
