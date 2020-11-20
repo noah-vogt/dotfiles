@@ -1,8 +1,15 @@
 #!/bin/sh
 
 # Script to Disable Mouse Acceleration (for dwm)
-# Note that you hav to find the right Device ID for "--set-prop" using "xinput list"
-xinput --set-prop 9 'libinput Accel Speed' 0
-xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
 
-xset mouse 3 0 &
+# dmenu prompt to select the right device
+deviceID=$(xinput | grep -B1000 "Virtual core keyboard" | preconv | cut -d' ' -f5-  |\
+sed '$ d; /^$/d;' | grep -v "master pointer" | rev | cut -d' ' -f5- | rev |\
+sed 's/\[slave//g;' | tr '\t' '    ' | dmenu -i -l 30 | awk '{print $NF}' | sed 's/id=//g')
+
+# disable the mouse acceleration (using xorg-xinput)
+xinput --set-prop $deviceID 'libinput Accel Speed' 0
+xinput --set-prop $deviceID 'libinput Accel Profile Enabled' 0, 1
+
+# set the mouse speed (using xorg-xset)
+xset mouse 1 0 &
