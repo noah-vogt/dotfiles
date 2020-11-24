@@ -75,5 +75,8 @@ alias merge='git merge'
 # quick acces to my latex templates 
 export PATH=$PATH:~/.config/setup/templates/latex
 
+# quick acces to my xournalpp templates 
+export PATH=$PATH:~/.config/setup/templates/xournalpp
+
 # using bash colors for PS1
 PROMPT_COMMAND='PS1="\[\033[01;97m\][\[\033[01;96m\]\u\[\033[01;97m\]@\[\033[01;91m\]\h \[\033[00m\]\[\033[01;32m\]\W\[\033[00m\]\[\033[01;97m\]]\[\033[01;95m\]\$\[\033[00m\] "'

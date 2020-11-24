@@ -10,7 +10,7 @@ export BROWSER=firefox &
 export EDITOR=vim &
 
 # set wallpaper
-feh --bg-scale ~/.cache/i3lock/current/resized.png
+feh --bg-scale ~/.cache/i3lock/current/dim.png
 
 # turn off BIOS beeper
 xset b off
