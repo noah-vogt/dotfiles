@@ -33,7 +33,7 @@ alias xo='xdg-open'
 alias q='exit'
 alias sx='startx'
 alias ll='ls -l'
-alias la='ls -a'
+alias la='ls -A'
 
 # reload configs
 alias sb='source ~/.bashrc'
