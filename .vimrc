@@ -19,9 +19,9 @@ set wildmenu
 set nu
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-"set expandtab
-"set smartindent
-"set smartcase
+set expandtab
+set smartindent
+set smartcase
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
@@ -35,7 +35,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 
 "Plug 'jremmen/vim-ripgrep'
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 "Plug 'leafgarland/typescript-vim'
 "Plug 'vim-utils/vim-man'
 "Plug 'lyuts/vim-rtags'

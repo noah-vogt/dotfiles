@@ -11,7 +11,7 @@ if [ -z "$wifi" ];
         # alternatively: diplay percentage
         # awk '/^\s*w/ { print "📶", int($3 * 100 / 70) "%" }' /proc/net/wireless | sed 's/100/99/'
 
-		percent=$(awk '/^\s*w/ { print int($3 * 100 / 70) }' /proc/net/wireless)
+		percent=$(awk '/^\s*w/ { print int($3 * 100 / 70) }' /proc/net/wireless | head -n 1)
 		if [ "$percent" -gt 80 ];
 		then
 			echo "🟩🟩🟩🟩🟩"
