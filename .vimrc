@@ -19,9 +19,9 @@ set wildmenu
 set nu
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-"set expandtab
-"set smartindent
-"set smartcase
+set expandtab
+set smartindent
+set smartcase
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
@@ -34,6 +34,12 @@ call plug#begin('~/.vim/plugged')
 " A Vim Plugin to get a cool color theme
 Plug 'morhetz/gruvbox'
 
+" nice statusline for vim
+Plug 'vim-airline/vim-airline'
+
+" new colorsheme
+Plug 'itchyny/landscape.vim'
+
 "Plug 'jremmen/vim-ripgrep'
 "Plug 'tpope/vim-fugitive'
 "Plug 'leafgarland/typescript-vim'
@@ -43,7 +49,7 @@ Plug 'morhetz/gruvbox'
 
 call plug#end()
 
-colorscheme gruvbox
+colorscheme landscape
 set background=dark
 
 if executable('rg')
