@@ -41,7 +41,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'itchyny/landscape.vim'
 
 "Plug 'jremmen/vim-ripgrep'
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 "Plug 'leafgarland/typescript-vim'
 "Plug 'vim-utils/vim-man'
 "Plug 'lyuts/vim-rtags'
