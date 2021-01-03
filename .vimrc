@@ -34,6 +34,12 @@ call plug#begin('~/.vim/plugged')
 " A Vim Plugin to get a cool color theme
 Plug 'morhetz/gruvbox'
 
+" nice statusline for vim
+Plug 'vim-airline/vim-airline'
+
+" new colorsheme
+Plug 'itchyny/landscape.vim'
+
 "Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 "Plug 'leafgarland/typescript-vim'
@@ -43,7 +49,7 @@ Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
-colorscheme gruvbox
+colorscheme landscape
 set background=dark
 
 if executable('rg')
