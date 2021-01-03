@@ -39,6 +39,7 @@ cmd open ${{
     case "${f##*.}" in
 		xopp) devour xournalpp $f;;
 		pdf) mupdf $f > /dev/null 2> /dev/null &disown;;
+		epub) mupdf $f > /dev/null 2> /dev/null &disown;;
         *) 
 			case $(file --mime-type $f -b) in
 			text/*) $EDITOR $fx;;
