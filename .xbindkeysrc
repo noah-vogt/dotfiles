@@ -65,3 +65,6 @@
 "screenshot"
    Print
 
+# toggle picom
+"toggle-picom"
+   Mod4 + W
