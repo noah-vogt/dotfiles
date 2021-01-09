@@ -125,3 +125,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " clear a TeX build after exiting vim
 autocmd VimLeavePre *.tex !texclear "%"
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'vim-python/python-syntax'
+let g:python_highlight_all = 1
