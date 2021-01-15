@@ -6,8 +6,13 @@
 syntax on
 set nocompatible
 
+" set vim path
+set undodir="~/.config/vim/undo"
+set viminfo="~/.config/vim/viminfo"
+set runtimepath+="~/.config/vim"
+
 " enable plugins (for netrw)
-filetype plugin on
+"filetype plugin on
 
 " make :find recursive
 set path+=**
@@ -24,12 +29,10 @@ set smartindent
 set smartcase
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
-set undofile
 set incsearch
 
-" getting plugins i don't use (yet)
-call plug#begin('~/.vim/plugged')
+" getting plugins
+call plug#begin('~/.config/vim/plugged')
 
 " A Vim Plugin to get a cool color theme
 Plug 'morhetz/gruvbox'
