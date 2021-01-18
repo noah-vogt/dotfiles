@@ -8,8 +8,8 @@ sed '$ d; /^$/d;' | grep -v "master pointer" | rev | cut -d' ' -f5- | rev |\
 sed 's/\[slave//g;' | tr '\t' '    ' | dmenu -i -l 30 | awk '{print $NF}' | sed 's/id=//g')
 
 # disable the mouse acceleration (using xorg-xinput)
-xinput --set-prop $deviceID 'libinput Accel Speed' 0
-xinput --set-prop $deviceID 'libinput Accel Profile Enabled' 0, 1
+xinput --set-prop "$deviceID" 'libinput Accel Speed' 0
+xinput --set-prop "$deviceID" 'libinput Accel Profile Enabled' 0, 1
 
 # set the mouse speed (using xorg-xset)
 xset mouse 1 0 &

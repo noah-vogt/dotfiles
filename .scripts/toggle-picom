@@ -2,8 +2,8 @@
 
 # script to toggle picom
 
-ps -e | grep -q "picom" && killall picom && 
+pgrep "picom" && killall picom && 
 notify-send "picom disabled" && exit
 
 picom &
-ps -e | grep -q "picom" && notify-send "picom enabled"
+pgrep "picom" && notify-send "picom enabled"

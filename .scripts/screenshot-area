@@ -2,4 +2,6 @@
 
 # script to make a screenshot from the desired selection
 
-import "Pictures/screenshots/$(date +"%F--%H-%M-%S--%N").jpg"
+mkdir -p "pix/screenshots"
+
+import "pix/screenshots/$(date +"%F--%H-%M-%S--%N").jpg"

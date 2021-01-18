@@ -3,14 +3,14 @@
 setxkbmap ch
 
 # start hotkey daemon
-xbindkeys &
+xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config &
 
 # set some defaults
 export BROWSER=firefox &
 export EDITOR=vim &
 
-# set wallpaper
-feh --bg-scale ~/.cache/i3lock/current/dim.png
+# set (previous) wallpaper
+~/.cache/.fehbg feh
 
 # turn off BIOS beeper
 xset b off

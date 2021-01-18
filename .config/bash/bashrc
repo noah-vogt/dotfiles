@@ -31,7 +31,7 @@ alias sus='sudo systemctl suspend'
 alias sdn='shutdown now'
 alias xo='xdg-open'
 alias q='exit'
-alias sx='startx'
+alias sx='startx "$XDG_CONFIG_HOME/X11/xinitrc" --'
 alias ll='ls -l'
 alias la='ls -A'
 
@@ -77,6 +77,8 @@ export PATH=$PATH:~/.config/setup/templates/latex
 
 # quick acces to my xournalpp templates 
 export PATH=$PATH:~/.config/setup/templates/xournalpp
+
+set -o vi
 
 # using bash colors for PS1
 PROMPT_COMMAND='PS1="\[\033[01;97m\][\[\033[01;96m\]\u\[\033[01;97m\]@\[\033[01;91m\]\h \[\033[00m\]\[\033[01;32m\]\W\[\033[00m\]\[\033[01;97m\]]\[\033[01;95m\]\$\[\033[00m\] "'
