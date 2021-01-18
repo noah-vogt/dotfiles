@@ -81,6 +81,9 @@ export PATH=$PATH:~/.config/setup/templates/xournalpp
 # ~/ cleanup
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
+# fix android studio for dwm
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # set vi mode
 set -o vi
 
