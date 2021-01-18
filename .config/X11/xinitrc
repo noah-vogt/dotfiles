@@ -10,7 +10,7 @@ export BROWSER=firefox &
 export EDITOR=vim &
 
 # set (previous) wallpaper
-~/.cache/.fehbg feh
+~/.cache/.fehbg && mv ~/.fehbg ~/.cache
 
 # turn off BIOS beeper
 xset b off

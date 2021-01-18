@@ -78,6 +78,10 @@ export PATH=$PATH:~/.config/setup/templates/latex
 # quick acces to my xournalpp templates 
 export PATH=$PATH:~/.config/setup/templates/xournalpp
 
+# ~/ cleanup
+alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+
+# set vi mode
 set -o vi
 
 # using bash colors for PS1
