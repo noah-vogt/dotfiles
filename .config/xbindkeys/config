@@ -68,3 +68,7 @@
 # toggle picom
 "toggle-picom"
    Mod4 + W
+
+# open new st window in the same directory
+"newpath-st"
+   Mod4 + N

@@ -80,12 +80,16 @@ export PATH=$PATH:~/.config/setup/templates/xournalpp
 
 # ~/ cleanup
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+alias xbindkeys="xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config"
 
 # fix android studio for dwm
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # set vi mode
 set -o vi
+
+# always open st in non-interactive mode
+alias st="st &disown"
 
 # using bash colors for PS1
 PROMPT_COMMAND='PS1="\[\033[01;97m\][\[\033[01;96m\]\u\[\033[01;97m\]@\[\033[01;91m\]\h \[\033[00m\]\[\033[01;32m\]\W\[\033[00m\]\[\033[01;97m\]]\[\033[01;95m\]\$\[\033[00m\] "'

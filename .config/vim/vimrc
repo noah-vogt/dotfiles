@@ -83,8 +83,16 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 "" commands for opening and compiling groff documents
 command S silent !vshow % &
 command C !compile %
-autocmd BufWritePost *.ms !compile % | fold -w200
-autocmd BufWritePost *.tex !compile % | fold -w200
+
+""" active to autocompile docs on saving
+"autocmd BufWritePost *.ms !compile % | fold -w200
+"autocmd BufWritePost *.tex !compile % | fold -w200
+
+" compile button
+map <F3> :w<CR>:!compile %<CR>
+
+" bibtex extra compiler
+map <F2> :!latexmk %<CR>
 
 " set encoding
 set encoding=utf-8
@@ -114,6 +122,9 @@ autocmd FileType tex inoremap ;it \textit{}<++><Esc>T{i
 
 " beamer macros
 autocmd FileType tex inoremap ;fr \begin{frame}<CR>\frametitle{}<CR><++><CR>\end{frame}<Esc>kklli
+
+" apacite style
+autocmd FileType tex inoremap ;ap \bibliographystyle{apacite}<CR>\bibliography{}<Esc>i
 """ END latex macros
 
 " make background transparent
