@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# File Name Correction script
+# Usage: ccn [filename]
+
+[ ! -f "$1" ] && { echo "Error: File '$1' not found"; exit 1; }
+
+# lowercase
+base="$(echo "${1%.*}" | tr '[:upper:]' '[:lower:]')"
+ext="$(echo "${1##*.}" | tr '[:upper:]' '[:lower:]')"
+
+# replace whitespaces with single dashes
+base=$(echo "$base" | sed 's/\s/-/g;' | tr -s - - |
+    # lowercase first letter
+    awk '{printf tolower(substr($0,1,1))} {print substr($0,2)}') 
+
+# check for extension
+if echo "$1" | grep -q "\."; then
+    mv -i "$1" "${base}.${ext}"
+else
+    mv -i "$1" "$base"
+fi
