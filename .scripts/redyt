@@ -1,41 +1,16 @@
 #!/bin/sh
 
-# Check if dmenu is installed
-[ ! "$(which dmenu)" ] && echo "Please install dmenu!" && exit 1
-
-# Check if jq is installed
-[ ! "$(which jq)" ] && echo "Please install jq!" && exit 1
-
 # If notify-send is not installed, use echo as notifier
-notifier="echo"
+[ ! "$(which notify-send)" ] && notifier="echo" || notifier="notify-send"
 
-# Check is sxiv is installed
-[ ! "$(which sxiv)" ] && echo "Please install sxiv!" && exit 1
+# Check if necessary programs are installed
+for prog in dmenu jq nomacs; do
+	[ ! "$(which "$prog")" ] && $notifier "redyt" "Error: Program '$prog' not found." && exit 1
+done
 
-# Create .config/redyt if it does not exist to prevent
-# the program from not functioning properly
-[ ! -d "$HOME/.config/redyt" ] && echo "Directory $HOME/.config/redyt does not exist, creating..." && mkdir -p "$HOME/.config/redyt"
+echo "Tip: Please run this program from your application launcher rather than the terminal."
 
-# If subbreddit.txt does not exist, create it to prevent
-# the program from not functioning properly
-[ ! -f "$HOME/.config/redyt/subreddit.txt" ] && echo "linux" >> "$HOME/.config/redyt/subreddit.txt"
-
-# If no argument is passed
-if [ -z "$1" ]; then
-	echo -n "Search query: "; 
-
-	# Ask the user to enter a subreddit
-	subreddit=$(dmenu -p "Select Subreddit r/" -i -l 10 < "$HOME/.config/redyt/subreddit.txt" | cut -d\| -f1 | awk '{$1=$1;print}')
-
-	# If no subreddit was chosen, exit
-	[ -z "$subreddit" ] && exit 1
-
-# Otherwise assign the first argument to the
-# subreddit variable
-else
-	subreddit="$1"
-fi
-
+# Default directory used to store the feed file and fetched images
 cachedir="$HOME/.cache/redyt"
 
 # If cachedir does not exist, create it
@@ -44,31 +19,62 @@ if [ ! -d "$cachedir" ]; then
 	mkdir -p "$cachedir"
 fi
 
+# Once finished, remove all of the cached images
+rm "${cachedir:?}"/*
+
+# Default config directory
+configdir="${XDG_CONFIG_HOME:-$HOME/.config}/redyt"
+
+# Create .config/redyt if it does not exist to prevent
+# the program from not functioning properly
+[ ! -d "$configdir" ] && echo "Directory $configdir does not exist, creating..." && mkdir -p "$configdir"
+
+# Default subreddit that will be inserted in "subreddits"
+# if it does not exist
+defaultsub="memes"
+
+# If subbreddits does not exist, create it to prevent
+# the program from not functioning properly
+[ ! -f "$configdir/subreddits" ] && echo "$defaultsub" >> "$configdir/subreddits"
+
+# If no argument is passed
+if [ -z "$1" ]; then
+	# Ask the user to enter a subreddit
+	subreddit=$(dmenu -p "Select Subreddit r/" -i -l 10 < "$configdir/subreddits" | cut -d\| -f1 | awk '{$1=$1;print}')
+
+	# If no subreddit was chosen, exit
+	[ -z "$subreddit" ] && exit 1
+
+# select sorting (default: sort by hot)
+sorting=$(printf "hot\nnew\n" | dmenu -p "Select Sorting" -i -l 10)
+[ -z "$sorting" ] && sorting="hot"
+
+
+# Otherwise assign the first argument to the
+# subreddit variable
+else
+	subreddit="$1"
+fi
+
+# Limit the maximum number of requests to make
 limit=100
 
 # Send a notification
-$notifier "Redyt: 📩 Downloading your 🖼️ Memes"
+$notifier "Redyt" "📩 Downloading your 🖼️ Memes"
 
 # Download the subreddit feed, containing only the
 # first 100 entries (limit), and store it inside
 # cachedir/tmp.json
-curl -H "User-agent: 'your bot 0.1'" "https://www.reddit.com/r/$subreddit/hot.json?limit=$limit" > "$cachedir/tmp.json"
+curl -H "User-agent: 'your bot 0.1'" "https://www.reddit.com/r/$subreddit/$sorting.json?limit=$limit" > "$cachedir/tmp.json"
 
 # Create a list of images
-imgs=$(jq '.' < "$cachedir/tmp.json" | grep url_overridden_by_dest | grep -Eo "http(s|)://.*(jpg|png)\b")
+imgs=$(jq '.' < "$cachedir/tmp.json" | grep url_overridden_by_dest | grep -Eo "http(s|)://.*(jpg|png)\b" | sort -u)
 
 # If there are no images, exit
-[ -z "$imgs" ] && $notifier "Redyt: sadly, there are no images for subreddit $subreddit, please try again later!" && exit 1
+[ -z "$imgs" ] && $notifier "Redyt" "sadly, there are no images for subreddit $subreddit, please try again later!" && exit 1
 
-# Download images to $cachedir
-wget -P "$cachedir" "$imgs"
+cp "$configdir/redyt.png" "$cachedir"
 
-# Send a notification
-$notifier  "Redyt: 👍 Download Finished, Enjoy! 😊"
-
-# Display the images
-sxiv "$cachedir"
-
-# Once finished, remove all of the cached images
-rm "$cachedir"/*
-
+# download + display images in $cachedir
+wget -bq -P "$cachedir" $imgs > /dev/null 2> /dev/null
+devour nomacs "$cachedir/redyt.png" &# > /dev/null 2> /dev/null
