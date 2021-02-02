@@ -4,7 +4,7 @@
 [ ! "$(which notify-send)" ] && notifier="echo" || notifier="notify-send"
 
 # Check if necessary programs are installed
-for prog in dmenu jq nomacs; do
+for prog in dmenu jq nomacs wget curl; do
 	[ ! "$(which "$prog")" ] && $notifier "redyt" "Error: Program '$prog' not found." && exit 1
 done
 

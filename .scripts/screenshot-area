@@ -2,6 +2,6 @@
 
 # script to make a screenshot from the desired selection
 
-mkdir -p "pix/screenshots"
+[ ! -d "$HOME/pix/screenshots" ] && mkdir -p "$HOME/pix/screenshots"
 
 import "pix/screenshots/$(date +"%F--%H-%M-%S--%N").jpg"
