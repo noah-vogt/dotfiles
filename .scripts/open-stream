@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# open a stream copied to the clipboard
+mpv $(xclip -out -sel clip)

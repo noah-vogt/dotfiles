@@ -60,7 +60,6 @@
 "firefox"
    Mod4 + V
 
-
 # make a screenshot of the full screen
 "screenshot"
    Print
@@ -72,3 +71,7 @@
 # open new st window in the same directory
 "newpath-st"
    Mod4 + N
+
+# open stream copied to clip board in mpv
+"open-stream"
+   Mod4 + O

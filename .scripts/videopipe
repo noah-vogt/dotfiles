@@ -10,4 +10,4 @@ else
     outputbase="${2%.*}"
 fi
 
-ffmpeg -i "$1" -codec:v libx264 -crf 21 -bf 2 -flags +cgop -pix_fmt yuv420p -codec:a aac -strict -2 -b:a 384k -r:a 48000 -movflags faststart "$outputbase.mp4"
+ffmpeg -i "$1" -codec:v libx264 -crf 26 -bf 2 -flags +cgop -pix_fmt yuv420p -codec:a aac -strict -2 -b:a 384k -r:a 48000 -movflags faststart "$outputbase.mp4"

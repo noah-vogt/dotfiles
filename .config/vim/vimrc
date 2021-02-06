@@ -80,6 +80,9 @@ nnoremap <leader>ps :Rg<CR>
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 
+" general custom commands
+command D filetype detect
+
 "" commands for opening and compiling groff documents
 command S silent !vshow % &
 command C !compile %
