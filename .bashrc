@@ -2,8 +2,9 @@
 [[ $- != *i* ]] && return
 
 # setting variables
-export EDITOR=vim
-export BROWSER=firefox
+export EDITOR=nvim
+export VISUAL=nvim
+export BROWSER=librewolf
 export PATH=$PATH:~/.scripts/:~/.local/bin
 
 # adding some colors to the world
@@ -19,7 +20,7 @@ alias free='free -h'
 # devour (swallow) windows
 alias mu='devour mupdf'
 alias xu='devour xournalpp'
-alias v='devour vlc'
+alias v='nvim'
 alias ok='devour okular'
 alias si='devour sxiv'
 alias lo='devour libreoffice'
@@ -53,6 +54,9 @@ alias lock='betterlockscreen -s dim'
 # faster directory switching
 alias ..='cd ..'
 alias ...='cd ../..'
+
+# vim
+alias vim='nvim'
 
 # safety features
 alias rm='rm -i'
