@@ -35,7 +35,7 @@ set incsearch
 call plug#begin('~/.config/vim/plugged')
 
 " A Vim Plugin to get a cool color theme
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
 
 " nice statusline for vim
 Plug 'vim-airline/vim-airline'
@@ -55,10 +55,6 @@ call plug#end()
 
 colorscheme landscape
 set background=dark
-
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
 
 let loaded_matchparen = 1
 let mapleader = " "
@@ -85,7 +81,7 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 command D filetype detect
 
 "" commands for opening and compiling groff documents
-command S silent !vshow % &
+command S silent !vshow %
 command C !compile %
 
 """ active to autocompile docs on saving
