@@ -1,4 +1,42 @@
 #!/bin/sh
 
-# open a stream copied to the clipboard
-mpv $(xclip -out -sel clip)
+# open a stream or media copied to the clipboard
+clipboard=$(xclip -out -sel clip | sed 's/!/\\!/')
+echo "$clipboard"
+
+# default: media is video/audio
+media='videoAudio'
+
+pdfViewers=$(printf "llpp\nmupdf\n")
+
+if echo "$clipboard" | grep -q "^https://taz.de"; then media='taz'; fi
+if echo "$clipboard" | grep -q "^http://www.taz.de/"; then media='taz'; fi
+
+notify-send "opening" "$media"
+
+case "$media" in
+    videoAudio) mpv "$clipboard";;
+    taz) 
+        rm /tmp/index.html; wget -P "/tmp" "$clipboard";
+        title=$(grep "<title>" "/tmp/index.html" | \
+        sed 's/^.*<title>//; s/\ -\ taz.*$//');
+        sed -i '0,/id\=\"reward\"/!d' "/tmp/index.html";
+        sed -i '0,/ArticleID/d;' "/tmp/index.html";
+        sed -i '/id\=\"reward\"/d' "/tmp/index.html";
+        pandoc -s "/tmp/index.html" -o "/tmp/index.tex"
+        sed -i '/\/count\/vgwort/d' "/tmp/index.tex"
+        sed -i 's/\/picture\//https:\/\/taz\.de\/picture\//g' "/tmp/index.tex"
+        grep "\\includegraphics" "/tmp/index.tex" | grep -v "^%" | \
+        sed 's/{/{\n/g; s/}/\n}/g' | grep "^http" | uniq > "/tmp/index.pics"
+        sed -i 's/\%\ Set\ default\ figure\ placement\ to\ htbp/\\usepackage{tgheros}\n\\usepackage{mathptmx}\n\\usepackage{sectsty}\n\\allsectionsfont{\\sffamily}\n\\usepackage[ngerman]{babel}/' "/tmp/index.tex"
+        cd "/tmp" || exit 1
+        while read -r f; do 
+            echo "$f";
+            rm "${f##*/}";
+            wget "$f";
+            sed -i "s|$f|${f##*\/}|g" "/tmp/index.tex";
+        done<"/tmp/index.pics"
+        pdflatex "/tmp/index.tex"
+        viewer=$(echo "$pdfViewers" | dmenu -i -l 30)
+        devour "$viewer" "/tmp/index.pdf";;
+esac
