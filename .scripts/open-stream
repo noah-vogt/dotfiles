@@ -9,8 +9,11 @@ media='videoAudio'
 
 pdfViewers=$(printf "llpp\nmupdf\n")
 
+# check media type
 if echo "$clipboard" | grep -q "^https://taz.de"; then media='taz'; fi
 if echo "$clipboard" | grep -q "^http://www.taz.de/"; then media='taz'; fi
+if echo "$clipboard" | grep -q "^https://www.woz.ch"; then media='woz'; fi
+if echo "$clipboard" | grep -q "^https://www.srf.ch"; then media='srf'; fi
 
 notify-send "opening" "$media"
 
@@ -37,6 +40,27 @@ case "$media" in
             sed -i "s|$f|${f##*\/}|g" "/tmp/index.tex";
         done<"/tmp/index.pics"
         pdflatex "/tmp/index.tex"
+        viewer=$(echo "$pdfViewers" | dmenu -i -l 30)
+        devour "$viewer" "/tmp/index.pdf";;
+    woz)
+        rm /tmp/index.html; curl "$clipboard" > "/tmp/index.html";
+        sed -i '0,/field-dateline/d;' "/tmp/index.html";
+        sed -i '0,/shariff/!d' "/tmp/index.html";
+        pandoc -s "/tmp/index.html" -o "/tmp/index.pdf" --template=german.latex
+        viewer=$(echo "$pdfViewers" | dmenu -i -l 30)
+        devour "$viewer" "/tmp/index.pdf";;
+    srf)
+        rm /tmp/index.html; curl "$clipboard" > "/tmp/index.html";
+        sed -i '0,/button-text\">Menü<\//d;' "/tmp/index.html";
+        sed -i '0,/div\ class\=\"related-items-list\">/!d' "/tmp/index.html";
+        if grep -q "\/play\/tv" "/tmp/index.html"; then
+           srfMediaType=$(printf "article\nvideo\n" | dmenu -i -l 30)
+           if echo "$srfMediaType" | grep -q "video"; then
+               mpv "https://www.srf.ch$(grep "\/play\/tv" "/tmp/index.html" | sed 's/^\s*//; s/data-href=\"//; s/.$//;')";
+               exit;
+            fi
+        fi
+        pandoc -s "/tmp/index.html" -o "/tmp/index.pdf" --template=german.latex
         viewer=$(echo "$pdfViewers" | dmenu -i -l 30)
         devour "$viewer" "/tmp/index.pdf";;
 esac
