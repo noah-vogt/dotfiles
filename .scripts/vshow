@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# script to open the compiled version of a groff/latex source file even if it not exists
-
-mupdf "${1%.*}.pdf" & sleep 0.5; xdotool key "Super_L+Return"; sleep 0.2; xdotool key "Super_L+j"; sleep 0.3; xdotool type Wk; sleep 0.1; xdotool key "Super_L+j";
