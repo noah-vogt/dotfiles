@@ -1,0 +1,69 @@
+# adding some colors to the world alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias ccat='highlight --out-format=ansi' # like cat, but with syntax highlighting
+
+# human readable pls
+alias du='du -h'
+alias df='df -h'
+alias free='free -h'
+
+alias v='nvim'
+alias ok='devour okular'
+alias si='devour sxiv'
+alias lo='devour libreoffice'
+
+# basic system aliases
+alias p='sudo pacman'
+alias sc='sudo systemctl'
+alias sus='sudo systemctl suspend'
+alias sdn='shutdown now'
+alias xo='xdg-open'
+alias q='exit'
+alias sx='startx "$XDG_CONFIG_HOME/X11/xinitrc" --'
+alias ll='ls -l'
+alias la='ls -A'
+alias sb='source ~/.bashrc'
+
+# frequently used programs aliases
+alias r='ranger'
+alias ca='calcurse'
+alias py='python'
+
+# copy and paste using xclip package
+alias copy="xclip -sel clip"
+alias paste="xclip -out -sel clip"
+
+# lockscreen
+alias lock='betterlockscreen -s dim'
+
+# faster directory switching
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# vim
+alias vim='nvim'
+
+# safety features
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# git aliases
+alias gs='git status'
+alias add='git add'
+alias commit='git commit'
+alias fetch='git fetch'
+alias pull='git pull'
+alias push='git push'
+alias log='git log'
+alias remote='git remote'
+alias tag='git tag'
+alias checkout='git checkout'
+alias merge='git merge'
+
+# ~/ cleanup
+alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+alias xbindkeys="xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config"
+
+# always open st in non-interactive mode
+alias nst="st &disown"

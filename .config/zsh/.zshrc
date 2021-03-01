@@ -63,7 +63,7 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # Load aliases and shortcuts if existent.
-[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
+[ -f "$HOME/.config/exportrc" ] && source "$HOME/.config/exportrc"
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 # Load zsh-syntax-highlighting; should be last.
