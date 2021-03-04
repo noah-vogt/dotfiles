@@ -23,9 +23,6 @@ case "$viewer" in
 esac
 }
 
-showpdf
-exit
-
 # check media type
 if echo "$clipboard" | grep -q "^https://taz.de"; then media='taz'; fi
 if echo "$clipboard" | grep -q "^http://www.taz.de/"; then media='taz'; fi
@@ -57,13 +54,13 @@ case "$media" in
             sed -i "s|$f|${f##*\/}|g" "/tmp/index.tex";
         done<"/tmp/index.pics"
         pdflatex "/tmp/index.tex"
-        showpdf
+        showpdf;;
     woz)
         rm /tmp/index.html; curl "$clipboard" > "/tmp/index.html";
         sed -i '0,/field-dateline/d;' "/tmp/index.html";
         sed -i '0,/shariff/!d' "/tmp/index.html";
         pandoc -s "/tmp/index.html" -o "/tmp/index.pdf" --template="$HOME/.config/setup/templates/pandoc/german.latex"
-        showpdf
+        showpdf;;
     srf)
         rm /tmp/index.html; curl "$clipboard" > "/tmp/index.html";
         sed -i '0,/button-text\">Menü<\//d;' "/tmp/index.html";
@@ -80,5 +77,5 @@ case "$media" in
             fi
         fi
         pandoc -s "/tmp/index.html" -o "/tmp/index.pdf" --template="$HOME/.config/setup/templates/pandoc/german.latex"
-        showpdf
+        showpdf;;
 esac

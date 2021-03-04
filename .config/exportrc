@@ -3,9 +3,12 @@ export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=librewolf
 export PATH=$PATH:~/.scripts/:~/.local/bin
+export SHELL=/bin/zsh
 
 # set XDG directories
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 # ~/ cleanup
 export VIMINIT="set nocp | source $XDG_CONFIG_HOME/vim/vimrc"
@@ -14,6 +17,10 @@ export XAUTHORITY="$XDG_CONFIG_HOME/Xauth/auth"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export TERMINFO="$XDG_DATA_HOME/terminfo"
+export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 
 # quick acces to my latex templates 
 export PATH=$PATH:~/.config/setup/templates/latex

@@ -1,4 +1,5 @@
-# adding some colors to the world alias ls='ls --color=auto'
+# adding some colors to the world
+alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ccat='highlight --out-format=ansi' # like cat, but with syntax highlighting
 
@@ -11,11 +12,12 @@ alias v='nvim'
 alias ok='devour okular'
 alias si='devour sxiv'
 alias lo='devour libreoffice'
+alias mu='devour mupdf'
 
 # basic system aliases
 alias p='sudo pacman'
 alias sc='sudo systemctl'
-alias sus='sudo systemctl suspend'
+alias sus='systemctl suspend'
 alias sdn='shutdown now'
 alias xo='xdg-open'
 alias q='exit'
