@@ -32,7 +32,24 @@ if echo "$clipboard" | grep -q "^https://www.srf.ch"; then media='srf'; fi
 notify-send "opening" "$media"
 
 case "$media" in
-    videoAudio) mpv "$clipboard";;
+    videoAudio) streamType=$(printf "stream\ndownload\n" | dmenu -i -l 30)
+        case "$streamType" in
+            stream) mpv "$clipboard";;
+            download) downFormat="$(youtube-dl -F "$clipboard" | \
+                sed '1,/format code/d' | dmenu -i -l 30 | awk '{print $1}')"
+                if [ -z "$downFormat" ]; then
+                    youtube-dl "$clipboard" -o \
+                    "$HOME/Downloads/%(title)s-%(id)s.%(ext)s" &&
+                    notify-send "downloading" "finished"
+                else
+                    youtube-dl -f "$downFormat" "$clipboard" -o \
+                    "$HOME/Downloads/%(title)s-%(id)s.%(ext)s" &&
+                    notify-send "downloading" "finished"
+                fi;;
+            *) exit 1;;
+        esac
+        ;;    
+
     taz) 
         rm /tmp/index.html; wget -P "/tmp" "$clipboard";
         title=$(grep "<title>" "/tmp/index.html" | \
@@ -55,12 +72,14 @@ case "$media" in
         done<"/tmp/index.pics"
         pdflatex "/tmp/index.tex"
         showpdf;;
+
     woz)
         rm /tmp/index.html; curl "$clipboard" > "/tmp/index.html";
         sed -i '0,/field-dateline/d;' "/tmp/index.html";
         sed -i '0,/shariff/!d' "/tmp/index.html";
         pandoc -s "/tmp/index.html" -o "/tmp/index.pdf" --template="$HOME/.config/setup/templates/pandoc/german.latex"
         showpdf;;
+
     srf)
         rm /tmp/index.html; curl "$clipboard" > "/tmp/index.html";
         sed -i '0,/button-text\">Menü<\//d;' "/tmp/index.html";
