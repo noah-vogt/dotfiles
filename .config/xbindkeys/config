@@ -75,3 +75,7 @@
 # open stream copied to clip board in mpv
 "open-stream"
    Mod4 + O
+
+# open gui file manager
+"pcmanfm"
+   Mod4 + A

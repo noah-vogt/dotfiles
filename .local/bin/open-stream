@@ -37,7 +37,7 @@ if echo "$clipboard" | grep -q "^https://www.srf.ch"; then media='srf'; fi
 notify-send "opening" "$media"
 
 case "$media" in
-    videoAudio) streamType=$(printf "stream\ndownload\nbackground\n" | dmenu -i -l 30)
+    videoAudio) streamType=$(printf "stream\ndownload\nbackground\ncopy link\n" | dmenu -i -l 30)
         case "$streamType" in
             stream) mpv "$clipboard";;
             download) downFormat="$(youtube-dl -F "$clipboard" | \
@@ -52,6 +52,7 @@ case "$media" in
                     notify-send "downloading" "finished"
                 fi;;
             background) mpv --no-video "$clipboard";;
+            "copy link") echo "$clipboard" | xclip -sel clip;;
             *) exit 1;;
         esac
         ;;    
