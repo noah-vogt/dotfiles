@@ -68,10 +68,6 @@
 "toggle-picom"
    Mod4 + W
 
-# open new st window in the same directory
-"newpath-st"
-   Mod4 + N
-
 # open stream copied to clip board in mpv
 "open-stream"
    Mod4 + O
@@ -79,3 +75,11 @@
 # open gui file manager
 "pcmanfm"
    Mod4 + A
+
+# open newsboat in new terminal window
+"st-exec newsboat"
+   Mod4 + U
+
+# open htop in new terminal window
+"st-exec htop"
+   Mod4 + F7

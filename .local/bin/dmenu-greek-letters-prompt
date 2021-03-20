@@ -2,7 +2,7 @@
 
 # script to get a selection of greek letters using dmenu
 
-selected=$(dmenu -l 25 < ~/.scripts/greek-letters)
+selected=$(dmenu -l 25 < ~/.local/share/norisa/greek-letters)
 
 # exit if none selected
 [ -z "$selected" ] && exit
