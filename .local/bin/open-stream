@@ -1,8 +1,13 @@
 #!/bin/sh
 
-# open a stream or media copied to the clipboard
-clipboard=$(xclip -out -sel clip | sed 's/!/\\!/')
-echo "$clipboard"
+# open a stream or media copied to the clipboard or given as argument
+
+if [ $# != 1 ]; then
+    clipboard=$(xclip -out -sel clip | sed 's/!/\\!/')
+    echo "$clipboard"
+else
+    clipboard="$1"
+fi
 
 # default: media is video/audio
 media='videoAudio'
@@ -32,7 +37,7 @@ if echo "$clipboard" | grep -q "^https://www.srf.ch"; then media='srf'; fi
 notify-send "opening" "$media"
 
 case "$media" in
-    videoAudio) streamType=$(printf "stream\ndownload\n" | dmenu -i -l 30)
+    videoAudio) streamType=$(printf "stream\ndownload\nbackground\n" | dmenu -i -l 30)
         case "$streamType" in
             stream) mpv "$clipboard";;
             download) downFormat="$(youtube-dl -F "$clipboard" | \
@@ -46,6 +51,7 @@ case "$media" in
                     "$HOME/Downloads/%(title)s-%(id)s.%(ext)s" &&
                     notify-send "downloading" "finished"
                 fi;;
+            background) mpv --no-video "$clipboard";;
             *) exit 1;;
         esac
         ;;    

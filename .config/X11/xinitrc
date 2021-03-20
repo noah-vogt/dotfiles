@@ -34,5 +34,12 @@ brightnessctl -d $(brightnessctl -l | grep "class 'backlight'" | head -n 1 | awk
 # load dwmblocks
 dwmblocks &
 
+# don't display mouse if not used recently
+unclutter &
+
+# ~/ cleanup
+rm -r "$HOME/go"
+rm "$HOME/.mupdf.history"
+
 # run dwm
 exec dwm

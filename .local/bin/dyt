@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 if [[ -z "$1" ]]; then
   printf "Search query: "; 
@@ -7,7 +7,8 @@ else
 	query="$1"
 fi
 
-query="${query// /+}"
+echo "$query"
+query="$(echo "$query" | sed s'/ /+/g')"
 echo "$query"
 
 # YT_API_KEY location
@@ -19,5 +20,5 @@ finalURL="https://$( curl -s "${urlstring}" \
 	| dmenu -i -p 'Select Video -' -l 20 \
 	| awk '{print $NF}' \
 )"
-echo "$finalURL" | xclip -sel clip
-devour mpv $finalURL
+
+[ -z "$finalURL" ] || open-stream "$finalURL"

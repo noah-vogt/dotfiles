@@ -46,8 +46,9 @@ if [ -z "$1" ]; then
 	[ -z "$subreddit" ] && exit 1
 
 # select sorting (default: sort by hot)
-sorting=$(printf "hot\nnew\n" | dmenu -p "Select Sorting" -i -l 10)
-[ -z "$sorting" ] && sorting="hot"
+# sorting=$(printf "hot\nnew\n" | dmenu -p "Select Sorting" -i -l 10)
+# [ -z "$sorting" ] && 
+sorting="hot"
 
 
 # Otherwise assign the first argument to the
