@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# script to toggle sshd on the active device
+
+if echo "$(systemctl status sshd)" | head | grep -q "inactive"; then
+    state="off"
+else
+    state="on"
+fi
+
+echo "sshd is currently [$state]"
