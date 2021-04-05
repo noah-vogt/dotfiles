@@ -37,9 +37,5 @@ dwmblocks &
 # don't display mouse if not used recently
 unclutter &
 
-# ~/ cleanup
-rm -r "$HOME/go"
-rm "$HOME/.mupdf.history"
-
 # run dwm
 exec dwm

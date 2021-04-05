@@ -80,6 +80,10 @@
 "st-exec newsboat"
    Mod4 + U
 
+# open neomutt in new terminal window
+"st-exec neomutt"
+   Mod4 + Z
+
 # open htop in new terminal window
 "st-exec htop"
    Mod4 + F7

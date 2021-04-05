@@ -1,0 +1,40 @@
+#!/bin/bash
+
+dirs="$(cat $HOME/.config/based-sync/dirs)"
+cons="$(cat $HOME/.config/based-sync/cons | grep -v $(internal-ip))"
+
+# reset cachefile safely
+cacheFile="/tmp/norisa/based-sync-cache"
+[ -d ${cacheFile%/*} ] || mkdir -p ${cacheFile%/*}
+if [ -f $cacheFile ]; then
+    rm $cacheFile; touch $cacheFile
+else
+    touch $cacheFile
+fi
+
+for con in $cons; do
+    if nc -zv -w 1 ${con/*@} 22 2>&1 | grep -q "succeeded"; then
+        echo "$con ON" | tee $cacheFile
+    else
+        echo "$con OFF"
+    fi
+done
+
+sed -i "s/ ON//g" $cacheFile
+
+if file $cacheFile | grep -q "empty"; then
+    echo "Error: No valid connection found, exiting"
+    notify-send "based-sync" "Error: No valid connection found, exiting"
+    exit 1
+fi
+
+ip=$(dmenu -i -l 30 < $cacheFile)
+
+for dir in $dirs; do
+    remoteUser=${ip/@*}
+    echo -uvrP --delete-after "${dir/\~/$HOME}/" $ip:"${dir/\~/\/home\/$remoteUser}"
+    rsync -uvrP --delete-after "${dir/\~/$HOME}/" $ip:"${dir/\~/\/home\/$remoteUser}"
+done
+
+echo "Success: File syncing is finished"
+notify-send "Success: File syncing is finished"
