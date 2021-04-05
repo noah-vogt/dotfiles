@@ -48,8 +48,8 @@ ip=$(dmenu -i -l 30 < $cacheFile)
 
 for dir in $dirs; do
     remoteUser=${ip/@*}
-    echo -uvrP --delete-after "${dir/\~/$HOME}/" $ip:"${dir/\~/\/home\/$remoteUser}"
-    rsync -uvrP --delete-after "${dir/\~/$HOME}/" $ip:"${dir/\~/\/home\/$remoteUser}"
+    echo -uvrP --delete-after -e 'ssh -T -c aes128-gcm@openssh.com -o Compression=no' "${dir/\~/$HOME}/" $ip:"${dir/\~/\/home\/$remoteUser}"
+    rsync -uvrP --delete-after -e 'ssh -T -c aes128-gcm@openssh.com -o Compression=no' "${dir/\~/$HOME}/" $ip:"${dir/\~/\/home\/$remoteUser}"
 done
 
 echo "Success: File syncing is finished"
