@@ -1,7 +1,14 @@
 #!/bin/bash
 
-dirs="$(cat $HOME/.config/based-sync/dirs)"
-cons="$(cat $HOME/.config/based-sync/cons | grep -v $(internal-ip))"
+configError() {
+    echo "Error: No valid configuration found, exiting"
+    notify-send "Error: No valid configuration found, exiting"
+}
+
+dirs="$(cat $HOME/.config/based-sync/dirs)" || configError
+cons="$(cat $HOME/.config/based-sync/cons | grep -v $(internal-ip))" || configError
+
+
 
 # reset cachefile safely
 cacheFile="/tmp/norisa/based-sync-cache"
