@@ -6,12 +6,18 @@ configError() {
     exit 1
 }
 
+# check dependencies
+for prog in internal-ip rsync nc notify-send; do
+    if ! command -v "$prog" > /dev/null 2>&1; then
+        echo "$prog is not detected" 1>&2
+        notify-send "$prog is not detected"; exit 1
+    fi
+done
+
 [ -f "$HOME/.config/based-sync/dirs" ] || configError
 [ -f "$HOME/.config/based-sync/cons" ] || configError
 dirs="$(cat $HOME/.config/based-sync/dirs)"
 cons="$(cat $HOME/.config/based-sync/cons | grep -v $(internal-ip))"
-
-
 
 # reset cachefile safely
 cacheFile="/tmp/norisa/based-sync-cache"
