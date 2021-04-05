@@ -2,11 +2,14 @@
 
 configError() {
     echo "Error: No valid configuration found, exiting"
-    notify-send "Error: No valid configuration found, exiting"
+    notify-send "based-sync" "Error: No valid configuration found, exiting"
+    exit 1
 }
 
-dirs="$(cat $HOME/.config/based-sync/dirs)" || configError
-cons="$(cat $HOME/.config/based-sync/cons | grep -v $(internal-ip))" || configError
+[ -f "$HOME/.config/based-sync/dirs" ] || configError
+[ -f "$HOME/.config/based-sync/cons" ] || configError
+dirs="$(cat $HOME/.config/based-sync/dirs)"
+cons="$(cat $HOME/.config/based-sync/cons | grep -v $(internal-ip))"
 
 
 
