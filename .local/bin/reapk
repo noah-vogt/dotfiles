@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 [ -f "$HOME/.config/norisa/reapk" ] || exit 1
 
@@ -17,12 +17,13 @@ fi
 #select device
 
 deviceAmount=$(adb devices | wc -l)
-extraAPKoptions=""
 
 if [ "$deviceAmount" -lt 3 ]; then
     notify "Error: cannot open any devices"
     exit 1
 elif [ "$deviceAmount" -eq 3 ]; then
+    extraAPKoptions=""
+else
     device=$(adb devices -l | sed '/List of devices/d; /^$/d' | dmenu -i -l 30 -p "Selet Device:" | awk '{print $1}')
     if [ -z $device ]; then
         notify "Error: no device selected"
@@ -32,4 +33,4 @@ elif [ "$deviceAmount" -eq 3 ]; then
 fi
 
 # install and notify when action finished
-adb install "$extraAPKoptions" -r "$apkFile" && notify "Action Finished !!!"
+st-exec "adb install $extraAPKoptions -r $apkFile" && notify "Action Finished !!!"
