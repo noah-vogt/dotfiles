@@ -125,7 +125,8 @@ $endif$
 }
 
 \usepackage{sectsty}
-\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+\selectlanguage{french}
 \allsectionsfont{\sffamily}
 
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
@@ -231,10 +232,6 @@ $endif$
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-colorlinks=true,
-linkcolor=blue,
-filecolor=magenta,
-urlcolor=cyan,
 $if(title-meta)$
   pdftitle={$title-meta$},
 $endif$
@@ -257,10 +254,7 @@ $if(colorlinks)$
   citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
   urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
 $else$
-  colorlinks=true,
-  linkcolor=blue,
-  filecolor=magenta,
-  urlcolor=cyan,
+  hidelinks,
 $endif$
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs

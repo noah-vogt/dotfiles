@@ -99,11 +99,36 @@ $if(linestretch)$
 \usepackage{setspace}
 $endif$
 \usepackage{ifxetex,ifluatex}
+
+% my additions
 \usepackage{tgheros}
 \usepackage{mathptmx}
+
+% geometry
+\usepackage{geometry}
+\geometry{ 
+    headsep=20pt,
+    headheight=20pt,
+    left=21mm,
+    top=15mm,
+    right=21mm,
+    bottom=15mm,
+    footskip=20pt, 
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
 \usepackage{sectsty}
 \usepackage[english]{babel}
+\selectlanguage{english}
 \allsectionsfont{\sffamily}
+
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
   \usepackage[utf8]{inputenc}

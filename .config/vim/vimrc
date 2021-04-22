@@ -80,15 +80,16 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 " general custom commands
 command D filetype detect
 
-"" commands for opening and compiling groff documents
-command S silent !vshow %
-command C !compile %
 
 """ active to autocompile docs on saving
 "autocmd BufWritePost *.ms !compile % | fold -w200
 "autocmd BufWritePost *.tex !compile % | fold -w200
 
-" compile button
+"" commands for opening and compiling various document types
+command S silent !vshow %
+command C !compile %
+
+" general compile button
 map <F3> :w<CR>:!compile %<CR>
 
 " bibtex extra compiler
@@ -139,6 +140,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " clear a TeX build after exiting vim
 autocmd VimLeavePre *.tex !texclear "%"
+autocmd VimLeavePre *.md !texclear "%"
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'vim-python/python-syntax'
 let g:python_highlight_all = 1
