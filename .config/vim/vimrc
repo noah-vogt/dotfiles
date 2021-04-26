@@ -44,12 +44,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'itchyny/landscape.vim'
 
 "Plug 'jremmen/vim-ripgrep'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 "Plug 'leafgarland/typescript-vim'
 "Plug 'vim-utils/vim-man'
 "Plug 'lyuts/vim-rtags'
 "Plug 'mbbill/undotree'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+"Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 call plug#end()
 
@@ -108,7 +108,6 @@ map <Space><Space> <Esc>/<++><Enter>"_c4l
 """ START latex macros
 " standard macros
 autocmd FileType tex inoremap ;beg <Esc>yypkI\begin{<Esc>A}<Esc>o<Esc>0i<Esc>jI\end{<Esc>A}<CR><Esc>0i<CR><Esc>0i<++><Esc>3ki
-autocmd FileType tex inoremap ;up \usepackage{}<Esc>i
 autocmd FileType tex inoremap ;ig \includegraphics[]{<++>}<Esc>6hi
 autocmd FileType tex inoremap ;tw width=\textwidth<Esc>9hi
 autocmd FileType tex inoremap ;th height=\textheight<Esc>10hi
@@ -123,6 +122,13 @@ autocmd FileType tex inoremap ;it \textit{}<++><Esc>T{i
 
 " beamer macros
 autocmd FileType tex inoremap ;fr \begin{frame}<CR>\frametitle{}<CR><++><CR>\end{frame}<Esc>kklli
+
+" book macros
+autocmd FileType tex inoremap ;sw \switchcolumn[]<++><Esc>4hi
+
+" preambule macros
+autocmd FileType tex inoremap ;up \usepackage{}<Esc>i
+autocmd FileType tex inoremap ;hy \hyphenation{}<Esc>i
 
 " apacite style
 autocmd FileType tex inoremap ;ap \bibliographystyle{apacite}<CR>\bibliography{}<Esc>i
@@ -144,3 +150,7 @@ autocmd VimLeavePre *.md !texclear "%"
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'vim-python/python-syntax'
 let g:python_highlight_all = 1
+
+" copy from / to clipboard
+vnoremap <C-c> "+y
+map <C-p> "+P
