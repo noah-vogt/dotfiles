@@ -1,7 +1,7 @@
 # setting basic variables
 export EDITOR=nvim
 export VISUAL=nvim
-export BROWSER=librewolf
+export BROWSER=brave
 export PATH=$PATH:~/.scripts/:~/.local/bin
 export SHELL=/bin/zsh
 
