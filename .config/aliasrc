@@ -13,6 +13,7 @@ alias ok='devour okular'
 alias si='devour sxiv'
 alias lo='devour libreoffice'
 alias mu='devour mupdf'
+alias llp='devour llpp'
 
 # basic system aliases
 alias p='sudo pacman'
