@@ -72,3 +72,12 @@ alias xbindkeys="xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config"
 alias nst="st > /dev/null 2> /dev/null &disown"
 alias yt="youtube-dl --add-metadata -i"
 alias yta="yt -x -f bestaudio/best"
+
+# fast dir switching
+src() {
+    cd "$(ls -d ~/.local/src/* | fzf)"
+}
+
+bin() {
+    vim "$(ls ~/.local/bin/* | fzf)"
+}
